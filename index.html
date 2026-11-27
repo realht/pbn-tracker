@@ -3,12 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#285C4E" />
+    <meta name="theme-color" content="#f5f6f5" />
     <title>PBN Tracker — Моя картина</title>
-    <script type="module" crossorigin src="/pbn-tracker/assets/main-DL8GshqH.js"></script>
-    <link rel="stylesheet" crossorigin href="/pbn-tracker/assets/main-CBEXDrpq.css">
+    <script>
+      // Apply the saved override before the application or its stylesheet loads.
+      {
+        let theme;
+        try {
+          theme = localStorage.getItem('pbn-theme');
+        } catch {
+          // The system setting is still available when storage is blocked.
+        }
+        const root = document.documentElement;
+        if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+        root.dataset.colorScheme =
+          root.dataset.theme ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      }
+    </script>
+    <script type="module" crossorigin src="/pbn-tracker/assets/main-DXE7hH3p.js"></script>
+    <link rel="stylesheet" crossorigin href="/pbn-tracker/assets/main-c6O4ob16.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
